@@ -15,13 +15,26 @@
 
         html, body {
             width: 100%;
-            background-color: #030303;
+            background-color: #000000;
             color: #ffffff;
             line-height: 2.0;
             font-size: 16px;
             direction: rtl;
             text-align: right;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ماتریس بەکگراوند (Red Matrix Effect) --- */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.85;
         }
 
         /* --- دیزاینی پێڕستی سەرەوە (Header Navigation Bar) --- */
@@ -31,10 +44,10 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(8, 8, 8, 0.98);
+            background: rgba(5, 5, 5, 0.92);
             backdrop-filter: blur(15px);
             border-bottom: 2px solid #ff003c;
-            box-shadow: 0 4px 25px rgba(255, 0, 60, 0.5);
+            box-shadow: 0 4px 25px rgba(255, 0, 60, 0.6);
             padding: 15px 25px;
             transform: translateY(-100%);
             transition: transform 0.4s ease-in-out;
@@ -63,7 +76,6 @@
             gap: 12px;
         }
 
-        /* یەک وێنەی بچووک لە سووچی پێڕستەکە */
         .corner-logo {
             width: 42px;
             height: 42px;
@@ -103,7 +115,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s ease;
-            background: rgba(255, 0, 60, 0.05);
+            background: rgba(255, 0, 60, 0.1);
             display: inline-block;
         }
 
@@ -154,12 +166,13 @@
             font-weight: bold;
         }
 
-        /* --- هەناوو ناوەڕۆک --- */
+        /* --- بەشەکانی ناوهێنانی ناوەڕۆک (بە باکگراوندی تاریک و سەوزکراو) --- */
         .hero-container {
-            padding: 100px 20px 50px 20px;
+            padding: 110px 20px 50px 20px;
             text-align: center;
-            background: radial-gradient(circle, #1a0206 0%, #030303 100%);
-            border-bottom: 1px solid #1a1a1a;
+            background: rgba(5, 5, 5, 0.82);
+            border-bottom: 1px solid rgba(255, 0, 60, 0.3);
+            backdrop-filter: blur(4px);
         }
 
         .hero-title {
@@ -225,16 +238,17 @@
         }
 
         .neon-card {
-            background-color: #080808;
+            background-color: rgba(6, 6, 6, 0.88);
             border: 2px solid #ff003c;
             border-radius: 14px;
             padding: 25px;
-            box-shadow: 0 0 15px rgba(255, 0, 60, 0.25);
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .neon-card:hover {
-            box-shadow: 0 0 25px rgba(255, 0, 60, 0.7);
+            box-shadow: 0 0 25px rgba(255, 0, 60, 0.8);
             transform: translateY(-4px);
         }
 
@@ -273,13 +287,14 @@
         }
 
         .social-box {
-            background: linear-gradient(135deg, #180206 0%, #080808 100%);
+            background: rgba(10, 2, 4, 0.92);
             border: 2px solid #ff003c;
             border-radius: 18px;
             padding: 35px 20px;
             text-align: center;
-            box-shadow: 0 0 25px rgba(255, 0, 60, 0.4);
+            box-shadow: 0 0 25px rgba(255, 0, 60, 0.5);
             margin-top: 20px;
+            backdrop-filter: blur(6px);
         }
 
         .social-buttons {
@@ -303,7 +318,7 @@
             font-weight: bold;
             border-radius: 10px;
             text-decoration: none;
-            box-shadow: 0 0 12px rgba(255, 0, 60, 0.3);
+            box-shadow: 0 0 12px rgba(255, 0, 60, 0.4);
             transition: all 0.3s ease;
         }
 
@@ -323,11 +338,11 @@
         }
 
         footer {
-            background-color: #050505;
+            background-color: rgba(3, 3, 3, 0.95);
             border-top: 2px solid #ff003c;
             padding: 25px 20px;
             text-align: center;
-            color: #777777;
+            color: #888888;
             font-size: 13px;
             margin-top: 40px;
         }
@@ -341,6 +356,9 @@
 </head>
 <body>
 
+    <!-- ماتریسی سەر بێکراوە لە هەموو پەڕەکەدا -->
+    <canvas id="matrixCanvas"></canvas>
+
     <!-- پەتی ڕاکێشان لە لای ڕاستی سەرەوە -->
     <div class="rope-container" id="ropeHandle">
         <div class="rope-line" id="ropeLine"></div>
@@ -351,7 +369,6 @@
     <header id="mainHeader">
         <div class="nav-container">
             <div class="brand-section">
-                <!-- تەنها یەک وێنەی بچووک لە سووچەکە -->
                 <img src="./ctaagency.jpg" alt="CTA Logo" class="corner-logo" onerror="this.onerror=null; this.src='ctaagency.jpg';">
                 <div class="header-brand">CTA <span>AGENCY</span></div>
             </div>
@@ -408,7 +425,7 @@
             </div>
         </section>
 
-        <!-- بەشی ئەرکەکانی سایبەر سێکوریتی (فراوانکراو) -->
+        <!-- بەشی ئەرکەکانی سایبەر سێکوریتی -->
         <section id="cyber-tasks" class="page-section">
             <div class="title-block">
                 <h2 class="main-heading">بواری کارکردن و ئەرکەکانی Cybersecurity</h2>
@@ -484,8 +501,9 @@
                         🎵 CTA Agency TikTok
                     </a>
                     
+                    <!-- بیگۆڕە بە Designer Account TikTok -->
                     <a href="https://www.tiktok.com/@imyara88?_r=1&_t=ZS-995mQxMXOgH" target="_blank" class="social-btn">
-                        🎵 Disigner Web
+                        🎵 Designer Account TikTok
                     </a>
 
                     <a href="https://discord.gg/heviland" target="_blank" class="social-btn discord-btn-highlight">
@@ -502,7 +520,65 @@
         <p>CTA AGENCY - Cybersecurity & Ethical Hacking Operations</p>
     </footer>
 
-    <!-- جاڤاسکریپتی پەتەکە (ناچێتەوە سەرەوە تا خۆت نەینێیتەوە سەرەوە) -->
+    <!-- سکرێپتی ماتریسی سوور (Red Matrix Effect Script) -->
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // کاراکتەرەکانی ماتریس (تێکەڵەی ژمارە و پیتی هاکەرانە)
+        const katakana = '0123456789ABCDEF⚛⚡☠☢☣🛡⚡👾SEARCHYARACBERSECURITYCTA';
+        const characters = katakana.split('');
+
+        const fontSize = 16;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = [];
+
+        function initDrops() {
+            columns = Math.floor(canvas.width / fontSize);
+            drops = [];
+            for (let x = 0; x < columns; x++) {
+                drops[x] = Math.floor(Math.random() * -100);
+            }
+        }
+        initDrops();
+
+        function drawMatrix() {
+            // تاریککردنەوەی هەنگاو بە هەنگاو بۆ دروستکردنی سیحر و شوێنپێی درەوشاوە
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters[Math.floor(Math.random() * characters.length)];
+                
+                // پیتی سەرەتا/پێشەوە سپی یان زەردی کەم بێت، ئەوانی تر سووری گەش
+                if (Math.random() > 0.88) {
+                    ctx.fillStyle = '#ffffff';
+                } else {
+                    ctx.fillStyle = '#ff003c';
+                }
+
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+    </script>
+
+    <!-- جاڤاسکریپتی پەتەکە -->
     <script>
         const ropeHandle = document.getElementById('ropeHandle');
         const ropeLine = document.getElementById('ropeLine');
