@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CTA AGENCY | ناوەندی سایبەر سێکوریتی</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            min-height: 100vh;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.8;
+            font-size: 15px;
+            direction: rtl;
+            text-align: right;
+            overflow-x: hidden !important;
+        }
+
+        /* --- Canvas ی ماتریکس --- */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header, .hero-container, .wrapper, footer, .rope-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- پێڕستی سەرەوە --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 2px solid #ff003c;
+            box-shadow: 0 4px 20px rgba(255, 0, 60, 0.5);
+            padding: 12px 15px;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease-in-out;
+            pointer-events: none;
+        }
+
+        header.open {
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            direction: ltr;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .corner-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid #ff003c;
+            object-fit: cover;
+            box-shadow: 0 0 10px #ff003c;
+        }
+
+        .header-brand {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ff003c;
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px #ff003c;
+            direction: ltr;
+        }
+
+        .header-brand span {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            list-style: none;
+            flex-wrap: wrap;
+            direction: ltr;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 0, 60, 0.4);
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: rgba(255, 0, 60, 0.2);
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            background-color: #ff003c;
+            color: #ffffff;
+            box-shadow: 0 0 12px #ff003c;
+        }
+
+        /* --- دیزاینی پەتەکە --- */
+        .rope-container {
+            position: fixed;
+            top: 0;
+            right: 15px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: grab;
+            touch-action: none;
+            pointer-events: auto;
+        }
+
+        .rope-container:active {
+            cursor: grabbing;
+        }
+
+        .rope-line {
+            width: 4px;
+            height: 70px;
+            background: linear-gradient(to bottom, #ff003c, #ff7b00);
+            box-shadow: 0 0 10px #ff003c;
+            transition: height 0.1s linear;
+        }
+
+        .rope-handle {
+            width: 28px;
+            height: 28px;
+            background: radial-gradient(circle, #ffffff 0%, #ff003c 100%);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #ff003c, 0 0 6px #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* --- ناوەڕۆک و شەفافیەتی زۆر --- */
+        .hero-container {
+            padding: 90px 12px 30px 12px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.15);
+            border-bottom: 2px solid rgba(255, 0, 60, 0.4);
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .hero-title span {
+            color: #ff003c;
+            text-shadow: 0 0 20px #ff003c;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            color: #ffffff;
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: justify;
+            text-justify: inter-word;
+            word-break: break-word;
+        }
+
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 10px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .page-section {
+            padding-top: 25px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .title-block {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .main-heading {
+            font-size: 24px;
+            color: #ff003c;
+            text-shadow: 0 0 15px #ff003c;
+            margin-bottom: 8px;
+            font-weight: 800;
+            word-break: break-word;
+        }
+
+        .sub-heading {
+            font-size: 13.5px;
+            color: #dddddd;
+            max-width: 800px;
+            margin: 0 auto;
+            word-break: break-word;
+        }
+
+        .grid-layout-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            width: 100%;
+        }
+
+        .grid-layout-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+            width: 100%;
+        }
+
+        /* شەفافی تەواو بۆ دیاربوونی ماتریکس */
+        .neon-card {
+            background-color: rgba(0, 0, 0, 0.15) !important;
+            border: 2px solid #ff003c;
+            border-radius: 10px;
+            padding: 15px 12px;
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
+            transition: all 0.3s ease;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            width: 100%;
+        }
+
+        .neon-card:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.8);
+            transform: translateY(-2px);
+            background-color: rgba(0, 0, 0, 0.35) !important;
+        }
+
+        .neon-card h3 {
+            color: #ffffff;
+            font-size: 17px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #ff003c;
+            padding-bottom: 5px;
+            word-break: break-word;
+        }
+
+        .neon-card p {
+            color: #ffffff;
+            font-size: 13.5px;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            text-align: justify;
+            word-break: break-word;
+        }
+
+        .neon-list {
+            list-style: none;
+            margin-top: 6px;
+        }
+
+        .neon-list li {
+            position: relative;
+            padding-right: 16px;
+            margin-bottom: 6px;
+            color: #ffffff;
+            font-size: 13px;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .neon-list li::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: #ff003c;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .social-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid #ff003c;
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            box-shadow: 0 0 18px rgba(255, 0, 60, 0.4);
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            direction: ltr;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            border: 2px solid #ff003c;
+            padding: 9px 14px;
+            font-size: 12.5px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 0 8px rgba(255, 0, 60, 0.4);
+            transition: all 0.3s ease;
+            max-width: 100%;
+        }
+
+        .social-btn:hover {
+            background-color: #ff003c;
+            box-shadow: 0 0 16px #ff003c;
+        }
+
+        .discord-btn-highlight {
+            background-color: #ff003c;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.85);
+            border-top: 2px solid #ff003c;
+            padding: 18px 10px;
+            text-align: center;
+            color: #aaaaaa;
+            font-size: 12px;
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 21px; }
+            .main-heading { font-size: 19px; }
+            .social-buttons { flex-direction: column; }
+            .social-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ماتریکس (تەنها کۆد و ژمارە) -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- پەتی ڕاکێشان -->
+    <div class="rope-container" id="ropeHandle">
+        <div class="rope-line" id="ropeLine"></div>
+        <div class="rope-handle" id="ropeArrow">▼</div>
+    </div>
+
+    <!-- پێڕستی سەرەوە -->
+    <header id="mainHeader">
+        <div class="nav-container">
+            <div class="brand-section">
+                <img src="./ctaagency.jpg" alt="CTA Logo" class="corner-logo" onerror="this.onerror=null; this.src='ctaagency.jpg';">
+                <div class="header-brand">CTA <span>AGENCY</span></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#network-hacking">Network Hacking</a></li>
+                <li><a href="#data-protection">Data Protection</a></li>
+                <li><a href="#operations">Operations</a></li>
+                <li><a href="#cyber-tasks">Cyber Security</a></li>
+                <li><a href="#social">Social Links</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero-container">
+        <h1 class="hero-title">تیمی <span>CTA AGENCY</span> بۆ سایبەر سێکوریتی و پاراستنی دیجیتاڵی</h1>
+        <p class="hero-description">
+            بەخێربهێن بۆ ناوەندی سەرەکی ئۆپراسیۆنە ئەمنییەکانی CTA AGENCY. ئێمە دامەزراوەیەکی پسپۆڕ و پێشکەوتووین لە بوارەکانی سایبەر سێکوریتی، هاکینگی ئەخلاقی (Ethical Hacking)، شیکردنەوەی مەترسییەکان، تاقیکردنەوەی بڕبڕەی پشتی تۆڕەکان و پاراستنی زانیارییە هەستیارەکان.
+        </p>
+    </section>
+
+    <div class="wrapper">
+
+        <!-- بەشی دەربارە -->
+        <section id="about" class="page-section">
+            <div class="neon-card">
+                <h3>دەروازەیەکی گشتگیر دەربارەی CTA AGENCY</h3>
+                <p>
+                    تیمی CTA AGENCY پێکهاتووە لە کۆمەڵێک پسپۆڕ و ئەندازیاری ڕاهێنراو لە بواری ئاسایشی دیجیتاڵی و سیستەمە ژیرەکان. لە جیهانی ئەمڕۆدا کە هەڕەشە ئەلیکترۆنییەکان ڕۆژانە ڕوو لە زیادبوون و ئاڵۆزبوون دەکەن، بوونی سیستەمێکی بەرگری بەهێز بۆ هەر دامەزراوە یان سێرڤەرێک بووەتە پێویستییەکی حەتمی.
+                </p>
+                <p>
+                    کارەکانمان لە ڕێگەی ستراتیژی پێشوەختە (Proactive Defense) ئەنجام دەدرێت؛ پێش ئەوەی هاكەرە زیانبەخشەکان دەستیان بگاتە کەلێنە ئەمنییەکان، ئێمە دەستنیشانیان دەکەین و دەرگاکانی دزەکردن دادەخەین.
+                </p>
+            </div>
+        </section>
+
+        <!-- بەشی Network Hacking -->
+        <section id="network-hacking" class="page-section">
+            <div class="title-block">
+                <h2 class="main-heading">هاکینگی تۆڕەکان و تاقیکردنەوەی دزەکردن</h2>
+                <p class="sub-heading">شیکردنەوەی هێڵەکانی پەیوەندی، ترافیکی تۆڕ، و دۆزینەوەی کەلێنەکانی Router و Switchکان.</p>
+            </div>
+
+            <div class="grid-layout-2">
+                <div class="neon-card">
+                    <h3>شیکردنەوەی ترافیک (Traffic Sniffing)</h3>
+                    <p>
+                        تۆڕەکانی ئینتەرنێت ڕۆژانە بە ملیۆنان پاکەتی زانیاری دەگوازنەوە. لە ڕێگەی هێرشەکانی Man-in-the-Middle (MITM) و شیکردنەوەی ترافیک، هاكەران هەوڵ دەدەن دەست بەسەر زانیارییە نەپارێزراوەکاندا بگرن.
+                    </p>
+                    <ul class="neon-list">
+                        <li><b>ARP Spoofing:</b> شێواندنی جۆری پەیوەندی ئامێرەکان لەناو تۆڕی ناوخۆیی (LAN) بۆ ڕاگیرکردنی زانیارییەکان.</li>
+                        <li><b>SSL Strip:</b> لادانی هێڵی پارێزراوی HTTPS و گۆڕینی بۆ HTTP بۆ بینینی وشەی تێپەڕ و داتاکان.</li>
+                        <li><b>Wi-Fi Security:</b> تاقیکردنەوەی ئاسایشی ڕاوتەرەکان لەبەرامبەر هێرشەکانی WPA2/WPA3 Handshake Crack.</li>
+                    </ul>
+                </div>
+
+                <div class="neon-card">
+                    <h3>دۆزینەوەی کەلێن و دەروازەکان (Port Scanning)</h3>
+                    <p>
+                        هەر سێرڤەر یان ڕاوتەرێک خاوەنی هەزاران Portی پەیوەندییە. هاککردنی تۆڕ بە دۆزینەوەی ئەو پۆرتە کراوانە دەست پێدەکات کە خاوەنی خزمەتگوزاری کۆن یان لاوازن.
+                    </p>
+                    <ul class="neon-list">
+                        <li><b>Nmap Reconnaissance:</b> پشکنینی گشتگیر بۆ دۆزینەوەی خزمەتگوزارییەکانی وەک SSH (22), FTP (21), SMB (445).</li>
+                        <li><b>Exploitation:</b> بەکارهێنانی کەرستەکانی وەک Metasploit بۆ ناردنی Payload بە ناو کەلێنە ناسراوەکاندا.</li>
+                        <li><b>Firewall Bypass:</b> تێپەڕاندنی دیواری بەرگری لە ڕێگەی پارچەپارچەکردنی پاکەتەکان (Packet Fragmentation).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- بەشی پاراستنی داتا -->
+        <section id="data-protection" class="page-section">
+            <div class="title-block">
+                <h2 class="main-heading">پاراستنی داتا و زانیارییە هەستیارەکان</h2>
+                <p class="sub-heading">بەکارهێنانی نوێترین تەکنەلۆژیاکانی کریپتۆگرافی و بەکۆدکردن بۆ ڕێگری لە دزەکردنی زانیاری.</p>
+            </div>
+
+            <div class="grid-layout-3">
+                <div class="neon-card">
+                    <h3>کۆدکردنی داتا (Encryption)</h3>
+                    <p>بەکارهێنانی ئەلگۆریتمە بەهێزەکانی وەک AES-256 و RSA بۆ کۆدکردنی داتاکان هەم لە کاتی کۆگاکردندا و هەم لە کاتی گواستنەوەدا.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>ڕێگری لە دزەکردن (DLP)</h3>
+                    <p>دابینکردنی سیستەمی Data Loss Prevention بۆ چاودێریکردنی داتاکان و ڕێگریکردن لە بردنە دەرەوەی زانیارییە نهێنییەکان.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>پاشەکەوتکردنی ئارام (Secure Backup)</h3>
+                    <p>دروستکردنی کۆپی یەدەگی بەکۆدکراو لە شوێنی دابڕاو بۆ ڕزگارکردنی زانیارییەکان لە کاتی هێرشی Ransomware.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بەشی ئۆپراسیۆنەکان -->
+        <section id="operations" class="page-section">
+            <div class="title-block">
+                <h2 class="main-heading">ئۆپراسیۆنەکانی پاراستن و هەڵوەشاندنەوە</h2>
+                <p class="sub-heading">ڕاوەدوونانی سێرڤەر و سەرچاوە گوماناوییەکان لە تۆڕی ئینتەرنێتدا.</p>
+            </div>
+
+            <div class="grid-layout-2">
+                <div class="neon-card">
+                    <h3>داخستنی وێبسایتە زیانبەخشەکان</h3>
+                    <p>کاتێک وێبسایتێک بۆ مەبەستی فێڵکردن، دزینی کارت و زانیاری بانکی دروست دەکرێت، تیمەکەمان خێرا دەکەوێتە کار بۆ ڕاگرتنیان.</p>
+                    <ul class="neon-list">
+                        <li>ڕاگرتنی سێرڤەری میوانداری زیانبەخش (Hosting Takedown)</li>
+                        <li>بلۆککردنی دۆمەینەکانی Phishing لە ئاستی دابینکەرانی ئینتەرنێت</li>
+                    </ul>
+                </div>
+
+                <div class="neon-card">
+                    <h3>پەکخستنی ئەپڵیکەیشنە مەترسیدارەکان</h3>
+                    <p>شیکردنەوەی پێچەوانەی (Reverse Engineering) کۆدەکانی ئەپڵیکەیشن بۆ ناسینەوەی مۆڵەتە مەترسیدارەکان و لەکارخستنی سێرڤەرەکانیان.</p>
+                    <ul class="neon-list">
+                        <li>تێکدانی سێرڤەری Command & Control (C2)ی هاكەرەکان</li>
+                        <li>پشکنینی ئەپەکانی Android (APK) و iOS بۆ دۆزینەوەی Spyware</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- بەشی ئەرکەکانی سایبەر سێکوریتی -->
+        <section id="cyber-tasks" class="page-section">
+            <div class="title-block">
+                <h2 class="main-heading">ئەرکە ئەمنییەکانی Cybersecurity</h2>
+            </div>
+
+            <div class="grid-layout-3">
+                <div class="neon-card">
+                    <h3>Penetration Testing</h3>
+                    <p>ئەنجامدانی هێرشی کۆنترۆڵکراو بۆ سەر وێبسایت و سێرڤەرەکان بە مەبەستی دۆزینەوەی کەلێنەکان.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>SOC & Monitoring</h3>
+                    <p>چاوادێریکردنی بەردەوامی ترافیکی تۆڕ و سێرڤەرەکان (24/7) بۆ ناسینەوەی هەر جوڵەیەکی نامۆ.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>Incident Response</h3>
+                    <p>کۆنتڕۆڵکردن و وەستاندنی ڕاستەوخۆی هێرشە ئەلیکترۆنییەکان لە کاتی ڕوودانیاندا.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بەشی تۆڕە کۆمەڵایەتییەکان -->
+        <section id="social" class="page-section">
+            <div class="social-box">
+                <h2 class="main-heading">Social Media & Links</h2>
+                <p>دەتوانیت لە ڕێگەی ئەم لینکانەی خوارەوە لەگەڵمان لە پەیوەندیدا بێت:</p>
+                
+                <div class="social-buttons">
+                    <a href="https://www.tiktok.com/@cta.agency8?_r=1&_t=ZS-995mRujkuKy" target="_blank" class="social-btn">
+                        CTA Agency TikTok
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@imyara88?_r=1&_t=ZS-995mQxMXOgH" target="_blank" class="social-btn">
+                        Designer TikTok
+                    </a>
+
+                    <a href="https://discord.gg/heviland" target="_blank" class="social-btn discord-btn-highlight">
+                        Discord Server
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>مافی لەبەرگرتنەوە پارێزراوە بۆ تیمی CTA AGENCY &copy; 2026</p>
+    </footer>
+
+    <!-- سکرێپتی ماتریکس (تەنها 0، 1 و Hex - بەبێ هیچ پیتێک) -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // تەنها کۆدی باینەری (01) و هەکسادیپل
+            const chars = '0101010101010123456789ABCDEF'.split('');
+            const fontSize = 15;
+            let columns = Math.floor(canvas.width / fontSize);
+            let drops = [];
+
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    
+                    if (Math.random() > 0.88) {
+                        ctx.fillStyle = '#ffffff';
+                    } else {
+                        ctx.fillStyle = '#ff003c';
+                    }
+
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            setInterval(drawMatrix, 33);
+        });
+    </script>
+
+    <!-- سکرێپتی پەتەکە -->
+    <script>
+        const ropeHandle = document.getElementById('ropeHandle');
+        const ropeLine = document.getElementById('ropeLine');
+        const ropeArrow = document.getElementById('ropeArrow');
+        const header = document.getElementById('mainHeader');
+
+        let isDragging = false;
+        let startY = 0;
+        const baseHeight = 70;
+        let isOpen = false;
+
+        function startDrag(e) {
+            isDragging = true;
+            startY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            ropeLine.style.transition = 'none';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            const y = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+            const diff = y - startY;
+
+            if (!isOpen && diff > 0 && diff < 120) {
+                ropeLine.style.height = (baseHeight + diff) + 'px';
+            } else if (isOpen && diff < 0 && diff > -120) {
+                ropeLine.style.height = (baseHeight + diff) + 'px';
+            }
+        }
+
+        function endDrag(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const endY = e.type.includes('touch') ? (e.changedTouches[0] ? e.changedTouches[0].clientY : startY) : e.clientY;
+            const diff = endY - startY;
+
+            ropeLine.style.transition = 'height 0.3s ease';
+            ropeLine.style.height = baseHeight + 'px';
+
+            if (!isOpen && diff > 35) {
+                header.classList.add('open');
+                ropeArrow.textContent = '▲';
+                isOpen = true;
+            } else if (isOpen && diff < -30) {
+                header.classList.remove('open');
+                ropeArrow.textContent = '▼';
+                isOpen = false;
+            }
+        }
+
+        ropeHandle.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('mouseup', endDrag);
+
+        ropeHandle.addEventListener('touchstart', startDrag, {passive: true});
+        window.addEventListener('touchmove', drag, {passive: true});
+        window.addEventListener('touchend', endDrag);
+    </script>
+</body>
+</html>
