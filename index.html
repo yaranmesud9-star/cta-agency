@@ -38,12 +38,12 @@
             padding: 15px 25px;
             transform: translateY(-100%);
             transition: transform 0.4s ease-in-out;
-            pointer-events: none; /* کاتێک داخرابێت ڕێگری لە کلیکی خوارەوە ناکات */
+            pointer-events: none;
         }
 
         header.open {
             transform: translateY(0);
-            pointer-events: auto; /* کاتێک کرایەوە کلیکەکان وەردەگرێت */
+            pointer-events: auto;
         }
 
         .nav-container {
@@ -63,10 +63,10 @@
             gap: 12px;
         }
 
-        /* وێنەی بچووک لە سووچی پێڕستەکە */
+        /* یەک وێنەی بچووک لە سووچی پێڕستەکە */
         .corner-logo {
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             border: 2px solid #ff003c;
             object-fit: cover;
@@ -341,7 +341,7 @@
 </head>
 <body>
 
-    <!-- پەتی ڕاکێشان لە لای ڕاستی سەرەوە (بێ نووسین) -->
+    <!-- پەتی ڕاکێشان لە لای ڕاستی سەرەوە -->
     <div class="rope-container" id="ropeHandle">
         <div class="rope-line" id="ropeLine"></div>
         <div class="rope-handle" id="ropeArrow">▼</div>
@@ -351,7 +351,7 @@
     <header id="mainHeader">
         <div class="nav-container">
             <div class="brand-section">
-                <!-- وێنەی بچووک لە سووچەکە -->
+                <!-- تەنها یەک وێنەی بچووک لە سووچەکە -->
                 <img src="./ctaagency.jpg" alt="CTA Logo" class="corner-logo" onerror="this.onerror=null; this.src='ctaagency.jpg';">
                 <div class="header-brand">CTA <span>AGENCY</span></div>
             </div>
@@ -408,7 +408,7 @@
             </div>
         </section>
 
-        <!-- بەشی ئەرکەکانی سایبەر سێکوریتی (دەوڵەمەندتر کراوە) -->
+        <!-- بەشی ئەرکەکانی سایبەر سێکوریتی (فراوانکراو) -->
         <section id="cyber-tasks" class="page-section">
             <div class="title-block">
                 <h2 class="main-heading">بواری کارکردن و ئەرکەکانی Cybersecurity</h2>
@@ -502,7 +502,7 @@
         <p>CTA AGENCY - Cybersecurity & Ethical Hacking Operations</p>
     </footer>
 
-    <!-- جاڤاسکریپتی کارکردنی پەتەکە (مانەوەی کراوە تا خۆت دەینێیتەوە سەرەوە) -->
+    <!-- جاڤاسکریپتی پەتەکە (ناچێتەوە سەرەوە تا خۆت نەینێیتەوە سەرەوە) -->
     <script>
         const ropeHandle = document.getElementById('ropeHandle');
         const ropeLine = document.getElementById('ropeLine');
@@ -512,7 +512,7 @@
         let isDragging = false;
         let startY = 0;
         const baseHeight = 80;
-        let isOpen = false; // حاڵەتی کراوە یان داواخراو
+        let isOpen = false;
 
         function startDrag(e) {
             isDragging = true;
@@ -526,12 +526,10 @@
             const diff = y - startY;
 
             if (!isOpen) {
-                // ڕاکێشان بۆ خوارەوە بۆ کردنەوە
                 if (diff > 0 && diff < 120) {
                     ropeLine.style.height = (baseHeight + diff) + 'px';
                 }
             } else {
-                // ڕاکێشان بۆ سەرەوە بۆ داخستن
                 if (diff < 0 && diff > -120) {
                     ropeLine.style.height = (baseHeight + diff) + 'px';
                 }
@@ -548,13 +546,11 @@
             ropeLine.style.transition = 'height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27)';
             ropeLine.style.height = baseHeight + 'px';
 
-            // ئەگەر داخرابوو و بەرەو خوارەوە ڕاکێشرا -> بیکەرەوە
             if (!isOpen && diff > 40) {
                 header.classList.add('open');
                 ropeArrow.textContent = '▲';
                 isOpen = true;
             } 
-            // ئەگەر کرابووەوە و بەرەو سەرەوە ڕاکێشرا -> دابیخەرەوە
             else if (isOpen && diff < -30) {
                 header.classList.remove('open');
                 ropeArrow.textContent = '▼';
