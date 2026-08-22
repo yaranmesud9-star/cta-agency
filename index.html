@@ -2,8 +2,8 @@
 <html lang="ckb" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=10.0, minimum-scale=0.1">
-    <title>CTA AGENCY | ناوەندی سایبەر سێکوریتی و هاکینگی ئەخلاقی</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTA AGENCY | سایبەر سێکوریتی</title>
     <style>
         * {
             margin: 0;
@@ -15,6 +15,7 @@
 
         html, body {
             width: 100%;
+            height: 100%;
             background-color: #000000;
             color: #ffffff;
             line-height: 2.1;
@@ -22,22 +23,26 @@
             direction: rtl;
             text-align: right;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* --- ماتریس بەکگراوند (Red Matrix Effect) --- */
+        /* --- ماتریس بەکگراوند (Çاککراو بۆ مۆبایل و کامپیوتەر) --- */
         #matrixCanvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* هێنراوەتە پێشەوە لەسەر باکگراوندی ڕەش */
             pointer-events: none;
-            opacity: 0.85;
         }
 
-        /* --- دیزاینی پێڕستی سەرەوە (Header Navigation Bar) --- */
+        /* هەموو بەشەکانی تر لەسەر ماتریکسەکە دەبن */
+        header, .hero-container, .wrapper, footer, .rope-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- دیزاینی پێڕستی سەرەوە --- */
         header {
             position: fixed;
             top: 0;
@@ -125,7 +130,7 @@
             box-shadow: 0 0 15px #ff003c;
         }
 
-        /* --- دیزاینی پەتەکە (Pull Rope) --- */
+        /* --- دیزاینی پەتەکە --- */
         .rope-container {
             position: fixed;
             top: 0;
@@ -166,13 +171,13 @@
             font-weight: bold;
         }
 
-        /* --- ناوەڕۆک و بەشەکان --- */
+        /* --- ناوەڕۆک --- */
         .hero-container {
             padding: 120px 20px 60px 20px;
             text-align: center;
-            background: rgba(5, 5, 5, 0.85);
+            background: rgba(5, 5, 5, 0.82);
             border-bottom: 2px solid rgba(255, 0, 60, 0.4);
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(4px);
         }
 
         .hero-title {
@@ -180,7 +185,6 @@
             font-weight: 900;
             color: #ffffff;
             margin-bottom: 20px;
-            line-height: 1.3;
         }
 
         .hero-title span {
@@ -189,12 +193,10 @@
         }
 
         .hero-description {
-            font-size: 19px;
+            font-size: 18px;
             color: #e0e0e0;
             max-width: 950px;
             margin: 0 auto;
-            text-align: justify;
-            text-justify: inter-word;
         }
 
         .wrapper {
@@ -221,33 +223,26 @@
             font-weight: 800;
         }
 
-        .sub-heading {
-            font-size: 16px;
-            color: #bbbbbb;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
         .grid-layout-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
             gap: 30px;
         }
 
         .grid-layout-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 30px;
         }
 
         .neon-card {
-            background-color: rgba(6, 6, 6, 0.92);
+            background-color: rgba(10, 10, 10, 0.85);
             border: 2px solid #ff003c;
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 0 18px rgba(255, 0, 60, 0.35);
             transition: all 0.3s ease;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(5px);
         }
 
         .neon-card:hover {
@@ -266,9 +261,7 @@
         .neon-card p {
             color: #dddddd;
             font-size: 15px;
-            line-height: 2.1;
-            margin-bottom: 15px;
-            text-align: justify;
+            line-height: 2.0;
         }
 
         .neon-list {
@@ -279,10 +272,8 @@
         .neon-list li {
             position: relative;
             padding-right: 25px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #e0e0e0;
-            font-size: 14.5px;
-            line-height: 1.9;
         }
 
         .neon-list li::before {
@@ -290,18 +281,15 @@
             position: absolute;
             right: 0;
             color: #ff003c;
-            font-weight: bold;
         }
 
         .social-box {
-            background: rgba(10, 2, 4, 0.95);
+            background: rgba(10, 2, 4, 0.88);
             border: 2px solid #ff003c;
             border-radius: 20px;
             padding: 40px 25px;
             text-align: center;
             box-shadow: 0 0 30px rgba(255, 0, 60, 0.55);
-            margin-top: 30px;
-            backdrop-filter: blur(8px);
         }
 
         .social-buttons {
@@ -332,20 +320,10 @@
         .social-btn:hover {
             background-color: #ff003c;
             box-shadow: 0 0 25px #ff003c;
-            transform: translateY(-3px);
-        }
-
-        .discord-btn-highlight {
-            background-color: #ff003c;
-        }
-
-        .discord-btn-highlight:hover {
-            background-color: #ffffff;
-            color: #ff003c;
         }
 
         footer {
-            background-color: rgba(3, 3, 3, 0.98);
+            background-color: rgba(3, 3, 3, 0.95);
             border-top: 2px solid #ff003c;
             padding: 30px 20px;
             text-align: center;
@@ -355,25 +333,23 @@
         }
 
         @media (max-width: 768px) {
-            .rope-container { right: 15px; }
             .hero-title { font-size: 28px; }
-            .main-heading { font-size: 26px; }
             .social-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ماتریسی سەر بێکراوە لە هەموو پەڕەکەدا -->
+    <!-- ماتریس بەکگراوند -->
     <canvas id="matrixCanvas"></canvas>
 
-    <!-- پەتی ڕاکێشان لە لای ڕاستی سەرەوە -->
+    <!-- پەتی ڕاکێشان -->
     <div class="rope-container" id="ropeHandle">
         <div class="rope-line" id="ropeLine"></div>
         <div class="rope-handle" id="ropeArrow">▼</div>
     </div>
 
-    <!-- پێڕستی سەرەوە -->
+    <!-- پێڕست -->
     <header id="mainHeader">
         <div class="nav-container">
             <div class="brand-section">
@@ -393,209 +369,64 @@
     </header>
 
     <section class="hero-container">
-        <h1 class="hero-title">تیمی <span>CTA AGENCY</span> بۆ سایبەر سێکوریتی و پاراستنی دیجیتاڵی</h1>
+        <h1 class="hero-title">تیمی <span>CTA AGENCY</span> بۆ سایبەر سێکوریتی</h1>
         <p class="hero-description">
-            بەخێربهێن بۆ ناوەندی سەرەکی ئۆپراسیۆنە ئەمنییەکانی CTA AGENCY. ئێمە دامەزراوەیەکی پسپۆڕ و پێشکەوتووین لە بوارەکانی سایبەر سێکوریتی، هاکینگی ئەخلاقی (Ethical Hacking)، شیکردنەوەی مەترسییەکان، تاقیکردنەوەی بڕبڕەی پشتی تۆڕەکان و پاراستنی زانیارییە هەستیارەکان. ئامانجی سەرەکیمان دروستکردنی هێڵێکی بەرگری پتەوە لەبەرامبەر هێرشە ئەلیکترۆنییە ئاڵۆزەکاندا.
+            ناوەندی پسپۆڕی ئاسایشی زانیاری، شیکردنەوەی مەترسییەکان، تاقیکردنەوەی تۆڕ و پاراستنی دیجیتاڵی.
         </p>
     </section>
 
     <div class="wrapper">
 
-        <!-- بەشی دەربارە (دورو درێژتر) -->
         <section id="about" class="page-section">
             <div class="neon-card">
-                <h3>دەروازەیەکی گشتگیر دەربارەی CTA AGENCY</h3>
-                <p>
-                    تیمی CTA AGENCY پێکهاتووە لە کۆمەڵێک پسپۆڕ و ئەندازیاری ڕاهێنراو لە بواری ئاسایشی دیجیتاڵی و سیستەمە ژیرەکان. لە جیهانی ئەمڕۆدا کە هەڕەشە ئەلیکترۆنییەکان ڕۆژانە ڕوو لە زیادبوون و ئاڵۆزبوون دەکەن، بوونی سیستەمێکی بەرگری بەهێز بۆ هەر دامەزراوە، سێرڤەر یان پڕۆژەیەک بووەتە پێویستییەکی زۆر حەتمی.
-                </p>
-                <p>
-                    کارەکانمان تەنها کورت نابێتەوە لە چارەسەرکردنی کێشەکان کاتی ڕوودانیان، بەڵکو ئێمە لە ڕێگەی ستراتیژی پێشوەختە (Proactive Defense) کار دەکەین؛ پێش ئەوەی هاكەرە زیانبەخشەکان دەستیان بگاتە کەلێنە ئەمنییەکان، ئێمە دەستنیشانیان دەکەین و دەرگاکانی دزەکردن دادەخەین.
-                </p>
+                <h3>دەروازەیەک دەربارەی CTA AGENCY</h3>
+                <p>تیمی CTA AGENCY دامەزراوەیەکی سەربەخۆیە لە بواری پاراستنی ئاسایشی دیجیتاڵی. تیمەکەمان کار دەکات لەسەر پشکنینی ڕاستەوخۆی سیستەمەکان، دۆزینەوەی کەلێنە ئەمنییەکان، و بەرپەرچدانەوەی هێرشە ئەلیکترۆنییەکان بۆ دروستکردنی کەشێکی ئارام لە جیهانی دیجیتاڵیدا.</p>
             </div>
         </section>
 
-        <!-- بەشی نوێ: Network Hacking (هاکینگی تۆڕەکان) -->
         <section id="network-hacking" class="page-section">
             <div class="title-block">
-                <h2 class="main-heading">هاکینگی تۆڕەکان و تاقیکردنەوەی دزەکردن (Network Hacking & Assessment)</h2>
-                <p class="sub-heading">شیکردنەوەی هێڵەکانی پەیوەندی، ترافیکی تۆڕ، و دۆزینەوەی کەلێنەکانی Router و Switchکان.</p>
+                <h2 class="main-heading">هاکینگی تۆڕەکان (Network Hacking)</h2>
             </div>
-
             <div class="grid-layout-2">
                 <div class="neon-card">
-                    <h3>پشکنین و شیکردنەوەی ترافیک (Traffic Sniffing & MITM)</h3>
-                    <p>
-                        تۆڕەکانی ئینتەرنێت ڕۆژانە بە ملیۆنان پاکەتی زانیاری دەگوازنەوە. لە ڕێگەی هێرشەکانی Man-in-the-Middle (MITM) و شیکردنەوەی ترافیک، هاكەران هەوڵ دەدەن دەست بەسەر زانیارییە نەپارێزراوەکاندا بگرن.
-                    </p>
-                    <ul class="neon-list">
-                        <li><b>ARP Spoofing & Poisoning:</b> شێواندنی جۆری پەیوەندی ئامێرەکان لەناو تۆڕی ناوخۆیی (LAN) بۆ ڕاگیرکردنی زانیارییەکان.</li>
-                        <li><b>SSL Strip & Decryption:</b> لادانی هێڵی پارێزراوی HTTPS و گۆڕینی بۆ HTTP بۆ بینینی وشەی تێپەڕ و داتاکان.</li>
-                        <li><b>Wi-Fi Vulnerability Testing:</b> تاقیکردنەوەی ئاسایشی ڕاوتەرەکان لەبەرامبەر هێرشەکانی WPA2/WPA3 Handshake Crack و WPS Pixie Dust.</li>
-                    </ul>
+                    <h3>شیکردنەوەی ترافیک (Traffic Sniffing)</h3>
+                    <p>پشکنین و پاراستنی تۆڕە ناوخۆییەکان (LAN/WLAN) لە هێرشەکانی Man-in-the-Middle و شیکردنەوەی پاکەتەکانی زانیاری.</p>
                 </div>
-
                 <div class="neon-card">
-                    <h3>دۆزینەوەی کەلێن و دەروازە کراوەکان (Port Scanning & Exploitation)</h3>
-                    <p>
-                        هەر سێرڤەر یان ڕاوتەرێک خاوەنی هەزاران Portی پەیوەندییە. هاککردنی تۆڕ بە دۆزینەوەی ئەو پۆرتە کراوانە دەست پێدەکات کە خاوەنی خزمەتگوزاری کۆن یان لاوازن.
-                    </p>
-                    <ul class="neon-list">
-                        <li><b>Nmap Reconnaissance:</b> پشکنینی گشتگیر بۆ دۆزینەوەی خزمەتگوزارییەکانی وەک SSH (22), FTP (21), SMB (445), RDP (3389).</li>
-                        <li><b>Exploiting Vulnerable Services:</b> بەکارهێنانی کەرستەکانی وەک Metasploit بۆ ناردنی Payload بە ناو کەلێنە ناسراوەکاندا.</li>
-                        <li><b>Firewall Bypass Techniques:</b> تێپەڕاندنی دیواری بەرگری (Firewall) لە ڕێگەی پارچەپارچەکردنی پاکەتەکان (Packet Fragmentation).</li>
-                    </ul>
+                    <h3>دۆزینەوەی دەروازەکان (Port Scanning)</h3>
+                    <p>پشکنینی پۆرتە کراوەکان لە ڕێگەی Nmap و ناسینەوەی خزمەتگوزارییە لاوازەکانی سەر سێرڤەر.</p>
                 </div>
             </div>
         </section>
 
-        <!-- بەشی نوێ: پاراستنی داتا و زانیاری (Data Protection) -->
         <section id="data-protection" class="page-section">
             <div class="title-block">
-                <h2 class="main-heading">پاراستنی داتا و زانیارییە هەستیارەکان (Data Protection & Privacy)</h2>
-                <p class="sub-heading">بەکارهێنانی نوێترین تەکنەلۆژیاکانی کریپتۆگرافی و بەکۆدکردن بۆ ڕێگری لە دزەکردنی زانیاری.</p>
+                <h2 class="main-heading">پاراستنی داتا و زانیاری (Data Protection)</h2>
             </div>
-
             <div class="grid-layout-3">
                 <div class="neon-card">
-                    <h3>کۆدکردنی داتا (Data Encryption)</h3>
-                    <p>
-                        بەکارهێنانی ئەلگۆریتمە بەهێزەکانی وەک AES-256 و RSA بۆ کۆدکردنی داتاکان هەم لە کاتی کۆگاکردندا (At Rest) و هەم لە کاتی گواستنەوەدا (In Transit).
-                    </p>
+                    <h3>کۆدکردنی داتا (Encryption)</h3>
+                    <p>بەکارهێنانی ئەلگۆریتمەکانی AES-256 بۆ کۆدکردنی داتاکان لە کاتی گواستنەوە و کۆگاکردندا.</p>
                 </div>
-
                 <div class="neon-card">
-                    <h3>ڕێگری لە دزەکردنی داتا (DLP)</h3>
-                    <p>
-                        دابینکردنی سیستەمی Data Loss Prevention بۆ چاودێریکردنی داتاکان و ڕێگریکردن لە بردنە دەرەوەی زانیارییە نهێنییەکان بە بێ مۆڵەت.
-                    </p>
+                    <h3>ڕێگری لە دزەکردن (DLP)</h3>
+                    <p>دابینکردنی سیستەمی DLP بۆ چاودێریکردن و ڕێگریکردن لە دزەکردنی نهێنییەکان.</p>
                 </div>
-
                 <div class="neon-card">
-                    <h3>پاشەکەوتکردنی ئارام (Secure Backup)</h3>
-                    <p>
-                        دروستکردنی کۆپی یەدەگی بەکۆدکراو لە شوێنی دابڕاو (Offsite/Air-Gapped) بۆ ڕزگارکردنی زانیارییەکان لە کاتی هێرشی Ransomware.
-                    </p>
+                    <h3>پاشەکەوت (Secure Backup)</h3>
+                    <p>دروستکردنی کۆپی یەدەگی بەکۆدکراو بۆ بەرگرتن لە هێرشەکانی Ransomware.</p>
                 </div>
             </div>
         </section>
 
-        <!-- بەشی ئۆپراسیۆنەکان (فراوانتر) -->
-        <section id="operations" class="page-section">
-            <div class="title-block">
-                <h2 class="main-heading">ئۆپراسیۆنەکانی پاراستن و هەڵوەشاندنەوە</h2>
-                <p class="sub-heading">ڕاوەدوونانی سێرڤەر و سەرچاوە گوماناوییەکان لە تۆڕی ئینتەرنێتدا.</p>
-            </div>
-
-            <div class="grid-layout-2">
-                <div class="neon-card">
-                    <h3>داخستنی وێبسایتە زیانبەخشەکان (Malicious Take-down)</h3>
-                    <p>
-                        کاتێک وێبسایتێک بۆ مەبەستی فێڵکردن، دزینی کاارت و زانیاری بانکی یان بڵاوکردنەوەی ڤایرۆس دروست دەکرێت، تیمەکەمان خێرا دەکەوێتە کار بۆ ڕاگرتن و سڕینەوەیان لە ئینتەرنێت.
-                    </p>
-                    <ul class="neon-list">
-                        <li>ڕاگرتنی سێرڤەری میوانداری زیانبەخش (Malicious Hosting Termination)</li>
-                        <li>بلۆککردنی دۆمەینەکانی Phishing و فێڵکردن لە ئاستی دابینکەرانی ئینتەرنێت</li>
-                        <li>ناردنی ڕاپۆرتی بڕواپێکراوی Takedown بۆ کۆمپانیا نێودەوڵەتییەکان</li>
-                    </ul>
-                </div>
-
-                <div class="neon-card">
-                    <h3>پەکخستنی ئەپڵیکەیشنە مەترسیدارەکان</h3>
-                    <p>
-                        شیکردنەوەی پێچەوانەی (Reverse Engineering) کۆدەکانی ئەپڵیکەیشنی مۆبایل و کامپیوتەر بۆ ناسینەوەی مۆڵەتە مەترسیدارەکان و لەکارخستنی سێرڤەرە سەرەکییەکانیان.
-                    </p>
-                    <ul class="neon-list">
-                        <li>تێکدانی سێرڤەری Command & Control (C2)ی هاكەرەکان</li>
-                        <li>وەستاندنی پرۆسەی دزینی زانیاری تایبەتی مۆبایلی بەکارهێنەران</li>
-                        <li>پشکنینی ئەپەکانی Android (APK) و iOS بۆ دۆزینەوەی spyware</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- بەشی ئەرکەکانی سایبەر سێکوریتی -->
-        <section id="cyber-tasks" class="page-section">
-            <div class="title-block">
-                <h2 class="main-heading">بواری کارکردن و ئەرکەکانی Cybersecurity</h2>
-                <p class="sub-heading">تەواوی بەشە ئۆپراسیۆنی و بەرگریییەکانی تیمی سایبەر سێکوریتی.</p>
-            </div>
-
-            <div class="grid-layout-3">
-                <div class="neon-card">
-                    <h3>Penetration Testing (Ethical Hacking)</h3>
-                    <p>ئەنجامدانی هێرشی کۆنترۆڵکراو و تاکتیکی بۆ سەر وێبسایت و سێرڤەرەکان بە مەبەستی دۆزینەوەی کەلێنەکان پێش ئەوەی هاكەرە زیانبەخشەکان سوودی لێ وەربگرن.</p>
-                </div>
-
-                <div class="neon-card">
-                    <h3>SOC & Threat Monitoring</h3>
-                    <p>چاوادێریکردنی بەردەوامی ترافیکی تۆڕ و سێرڤەرەکان بە شێوەی (24/7) لە ڕێگەی سیستەمی SIEM بۆ ناسینەوە و تێکدانی هەر جوڵەیەکی نامۆ.</p>
-                </div>
-
-                <div class="neon-card">
-                    <h3>Incident Response (بەرسڤدانی کتوپڕ)</h3>
-                    <p>کۆنتڕۆڵکردن و وەستاندنی ڕاستەوخۆی هێرشە ئەلیکترۆنییەکان لە کاتی ڕوودانیاندا و زوو پاککردنەوە و گەڕاندنەوەی سێرڤەرەکان بۆ باری ئاسایی.</p>
-                </div>
-
-                <div class="neon-card">
-                    <h3>Malware Analysis (شیکردنەوەی ڤایرۆس)</h3>
-                    <p>شیکردنەوە و هەڵوەشاندنەوەی بەرنامە زیانبەخشەکان و ڤایرۆسەکان (Ransomware, Trojans, Keyloggers) لە ناو ژینگەی تایبەتی Sandbox.</p>
-                </div>
-
-                <div class="neon-card">
-                    <h3>Vulnerability Assessment</h3>
-                    <p>پشکنینی گشتگیری کۆد، بنکەدراوە (Database)، و ژێرخانی دیجیتاڵی بۆ دەستنیشانکردنی خاڵە لاوازەکان و پێشکەشکردنی ڕاپۆرتی چاکسازی.</p>
-                </div>
-
-                <div class="neon-card">
-                    <h3>Cloud Security & Infrastructure</h3>
-                    <p>پاراستنی سێرڤەرە هەورەکان (Cloud Security) و ڕێگریکردن لە دزەکردنی داتا لە سێرڤەرەکانی وەک AWS, Azure, و VPS.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- بەشی ئامرازەکان -->
-        <section id="tools" class="page-section">
-            <div class="title-block">
-                <h2 class="main-heading">ئامراز و سیستەمەکان</h2>
-                <p class="sub-heading">ئەو بەرنامە و ئامرازانەی تیمی CTA AGENCY لە ئۆپراسیۆنەکاندا بەکاریان دەهێنێت.</p>
-            </div>
-
-            <div class="grid-layout-3">
-                <div class="neon-card">
-                    <h3>Kali Linux & Parrot OS</h3>
-                    <p>سیستەمە سەرەکییە ناوەندییەکان بۆ ئەنجامدانی تەواوی تاقیکردنەوەکانی ئاسایش، هاکینگی ئەخلاقی و پشکنین.</p>
-                </div>
-
-                <div class="neon-card">
-                    <h3>Wireshark & Nmap</h3>
-                    <p>ئامرازی پێشکەوتوو بۆ شیکردنەوەی پاکەتەکانی تۆڕ، پشکنینی پۆرتە کراوەکان و دیاریکردنی نەخشەی تۆڕ.</p>
-                </div>
-
-                <div class="neon-card">
-                    <h3>Burp Suite & Metasploit</h3>
-                    <p>پشکنینی کەلێنەکانی وێبسایت، دۆزینەوەی SQL Injection, XSS و ئەنجامدانی هێرشی ئەزموونی سەر سێرڤەر.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- بەشی تۆڕە کۆمەڵایەتییەکان -->
         <section id="social" class="page-section">
             <div class="social-box">
                 <h2 class="main-heading">Social Media & Links</h2>
-                <p>دەتوانیت لە ڕێگەی ئەم لینکانەی خوارەوە لەگەڵمان لە پەیوەندیدا بێت بۆ وەرگرتنی هاوکاری یان ڕاوێژکاری ئەمنی:</p>
-                
                 <div class="social-buttons">
-                    <a href="https://www.tiktok.com/@cta.agency8?_r=1&_t=ZS-995mRujkuKy" target="_blank" class="social-btn">
-                        🎵 CTA Agency TikTok
-                    </a>
-                    
-                    <a href="https://www.tiktok.com/@imyara88?_r=1&_t=ZS-995mQxMXOgH" target="_blank" class="social-btn">
-                        🎵 Designer Account TikTok
-                    </a>
-
-                    <a href="https://discord.gg/heviland" target="_blank" class="social-btn discord-btn-highlight">
-                        💬 Discord Server
-                    </a>
+                    <a href="https://www.tiktok.com/@cta.agency8?_r=1&_t=ZS-995mRujkuKy" target="_blank" class="social-btn">🎵 CTA Agency TikTok</a>
+                    <a href="https://www.tiktok.com/@imyara88?_r=1&_t=ZS-995mQxMXOgH" target="_blank" class="social-btn">🎵 Designer Account TikTok</a>
+                    <a href="https://discord.gg/heviland" target="_blank" class="social-btn" style="background-color: #ff003c;">💬 Discord Server</a>
                 </div>
             </div>
         </section>
@@ -604,10 +435,9 @@
 
     <footer>
         <p>مافی لەبەرگرتنەوە پارێزراوە بۆ تیمی CTA AGENCY &copy; 2026</p>
-        <p>CTA AGENCY - Cybersecurity, Network Hacking & Data Protection Operations</p>
     </footer>
 
-    <!-- سکرێپتی ماتریسی سوور (Red Matrix Effect Script) -->
+    <!-- سکرێپتی چاککراوی ماتریکس -->
     <script>
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
@@ -619,32 +449,27 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        const katakana = '0123456789ABCDEF⚛⚡☠☢☣🛡⚡👾SEARCHYARACBERSECURITYCTA';
-        const characters = katakana.split('');
-
+        const chars = '0123456789ABCDEF⚛⚡☠☢☣🛡⚡👾YARACBERSECURITYCTA'.split('');
         const fontSize = 16;
         let columns = Math.floor(canvas.width / fontSize);
         let drops = [];
 
-        function initDrops() {
-            columns = Math.floor(canvas.width / fontSize);
-            drops = [];
-            for (let x = 0; x < columns; x++) {
-                drops[x] = Math.floor(Math.random() * -100);
-            }
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
         }
-        initDrops();
 
         function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            // دیاریکردنی ڕەنگی پاشبنەما بە شەفافیەتی کەم بۆ دروستکردنی سیحر
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
-                const text = characters[Math.floor(Math.random() * characters.length)];
+                const text = chars[Math.floor(Math.random() * chars.length)];
                 
-                if (Math.random() > 0.88) {
+                // پیتی سەرەوە بە سپی گەش و دواتر بە ڕەنگی سوور
+                if (Math.random() > 0.90) {
                     ctx.fillStyle = '#ffffff';
                 } else {
                     ctx.fillStyle = '#ff003c';
@@ -659,10 +484,11 @@
             }
         }
 
+        // ڕەنکردنی بەردەوامی ماتریسەکە
         setInterval(drawMatrix, 33);
     </script>
 
-    <!-- جاڤاسکریپتی پەتەکە -->
+    <!-- سکرێپتی پەتەکە -->
     <script>
         const ropeHandle = document.getElementById('ropeHandle');
         const ropeLine = document.getElementById('ropeLine');
@@ -685,14 +511,10 @@
             const y = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
             const diff = y - startY;
 
-            if (!isOpen) {
-                if (diff > 0 && diff < 120) {
-                    ropeLine.style.height = (baseHeight + diff) + 'px';
-                }
-            } else {
-                if (diff < 0 && diff > -120) {
-                    ropeLine.style.height = (baseHeight + diff) + 'px';
-                }
+            if (!isOpen && diff > 0 && diff < 120) {
+                ropeLine.style.height = (baseHeight + diff) + 'px';
+            } else if (isOpen && diff < 0 && diff > -120) {
+                ropeLine.style.height = (baseHeight + diff) + 'px';
             }
         }
 
@@ -703,15 +525,14 @@
             const endY = e.type.includes('touch') ? (e.changedTouches[0] ? e.changedTouches[0].clientY : startY) : e.clientY;
             const diff = endY - startY;
 
-            ropeLine.style.transition = 'height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27)';
+            ropeLine.style.transition = 'height 0.3s ease';
             ropeLine.style.height = baseHeight + 'px';
 
             if (!isOpen && diff > 40) {
                 header.classList.add('open');
                 ropeArrow.textContent = '▲';
                 isOpen = true;
-            } 
-            else if (isOpen && diff < -30) {
+            } else if (isOpen && diff < -30) {
                 header.classList.remove('open');
                 ropeArrow.textContent = '▼';
                 isOpen = false;
@@ -726,6 +547,5 @@
         window.addEventListener('touchmove', drag, {passive: true});
         window.addEventListener('touchend', endDrag);
     </script>
-
 </body>
 </html>
