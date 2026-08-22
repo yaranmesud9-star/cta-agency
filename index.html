@@ -42,6 +42,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
+            direction: ltr; /* ڕێکخستنی سەرەوە لە چەپ بۆ ڕاست */
         }
 
         .header-brand {
@@ -50,6 +51,7 @@
             color: #ff003c;
             letter-spacing: 2px;
             text-shadow: 0 0 15px #ff003c;
+            direction: ltr;
         }
 
         .header-brand span {
@@ -61,6 +63,7 @@
             gap: 12px;
             list-style: none;
             flex-wrap: wrap;
+            direction: ltr; /* لۆگۆ و پێڕستەکە لە چەپ بۆ ڕاست دەبن */
         }
 
         .nav-links a {
@@ -163,6 +166,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .grid-layout-2 {
@@ -241,6 +245,7 @@
             gap: 20px;
             flex-wrap: wrap;
             margin-top: 25px;
+            direction: ltr;
         }
 
         .social-btn {
@@ -287,6 +292,7 @@
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
+                align-items: flex-start;
             }
             .hero-title {
                 font-size: 28px;
@@ -299,15 +305,16 @@
 </head>
 <body>
 
+    <!-- بەشی سەرەوە بە ئینگلیزی و لە چەپ بۆ ڕاست -->
     <header>
         <div class="nav-container">
             <div class="header-brand">CTA <span>AGENCY</span></div>
             <ul class="nav-links">
-                <li><a href="#about">دەربارە</a></li>
-                <li><a href="#operations">ئۆپراسیۆنەکان</a></li>
-                <li><a href="#cyber-tasks">ئەرکەکانی سایبەر</a></li>
-                <li><a href="#tools">ئامرازەکان</a></li>
-                <li><a href="#social">تۆڕە کۆمەڵایەتییەکان</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#operations">Operations</a></li>
+                <li><a href="#cyber-tasks">Tasks</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#social">Social Media</a></li>
             </ul>
         </div>
     </header>
@@ -323,7 +330,7 @@
         <section id="about" class="page-section">
             <div class="neon-card">
                 <div class="img-box">
-                    <img src="ctaagency.jpg" alt="CTA Agency Image">
+                    <img src="./ctaagency.jpg" alt="CTA Agency Image" onerror="this.onerror=null; this.src='ctaagency.jpg';">
                 </div>
                 <h3>دەروازەیەک دەربارەی CTA AGENCY</h3>
                 <p>تیمی CTA AGENCY پێکهاتووە لە کەسانی پسپۆڕ و شارەزا لە بواری پاراستنی ئاسایشی دیجیتاڵی. ئامانجی سەرەکی ئێمە دروستکردنی کەشێکی ئارام و پارێزراوە لە جیهانی ئینتەرنێتدا لە ڕێگەی دۆزینەوەی خاڵە لاوازەکان و ڕاگرتنی هێرشەکان.</p>
@@ -340,7 +347,7 @@
             <div class="grid-layout-2">
                 <div class="neon-card">
                     <div class="img-box">
-                        <img src="ctaagency.jpg" alt="CTA Agency Image">
+                        <img src="./ctaagency.jpg" alt="CTA Agency Image" onerror="this.onerror=null; this.src='ctaagency.jpg';">
                     </div>
                     <h3>داخستنی وێبسایتە زیانبەخشەکان</h3>
                     <p>ڕاگرتنی ڕاستەوخۆی سێرڤەرەکان و ناردنی ڕاپۆرتی ئەمنی بڕواپێکراو بۆ بلۆککردنی ناوەڕۆکی مەترسیدار.</p>
@@ -352,7 +359,7 @@
 
                 <div class="neon-card">
                     <div class="img-box">
-                        <img src="ctaagency.jpg" alt="CTA Agency Image">
+                        <img src="./ctaagency.jpg" alt="CTA Agency Image" onerror="this.onerror=null; this.src='ctaagency.jpg';">
                     </div>
                     <h3>پەکخستنی ئەپڵیکەیشنە مەترسیدارەکان</h3>
                     <p>شیکردنەوەی پێچەوانەی کۆدەکان بۆ دۆزینەوەی درزی سیخوڕی و لەکارخستنی سێرڤەرەکانی پشتەوەیان.</p>
@@ -417,7 +424,7 @@
         <!-- بەشی پێنجەم: تۆڕە کۆمەڵایەتییەکان و لینکەکان -->
         <section id="social" class="page-section">
             <div class="social-box">
-                <h2 class="main-heading">پەیوەندی و تۆڕە کۆمەڵایەتییەکان</h2>
+                <h2 class="main-heading">Social Media & Links</h2>
                 <p>دەتوانیت لە ڕێگەی ئەم لینکانەی خوارەوە بەردەوام بەدواداچوون بۆ کارەکانمان بکەیت یان بێیتە ناو سێرڤەرەکەی کۆمەڵگەکەمان:</p>
                 
                 <div class="social-buttons">
