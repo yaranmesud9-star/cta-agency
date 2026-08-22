@@ -209,6 +209,66 @@
             line-height: 2.4;
         }
 
+        /* ==========================================================================
+           بەشی نوێی تیک تۆک (TIKTOK SECTION)
+           ========================================================================== */
+        .tiktok-section-box {
+            background: linear-gradient(135deg, #110006 0%, #080808 100%);
+            border: 2px solid #ff003c;
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 0, 60, 0.5);
+            margin: 70px 0 40px 0;
+        }
+
+        .tiktok-section-box h2 {
+            font-size: 30px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px #ff003c;
+        }
+
+        .tiktok-section-box p {
+            color: #cccccc;
+            font-size: 17px;
+            margin-bottom: 35px;
+        }
+
+        .tiktok-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tiktok-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: #000000;
+            color: #ffffff;
+            border: 2px solid #ff003c;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 0 18px rgba(255, 0, 60, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .tiktok-btn:hover {
+            background-color: #ff003c;
+            color: #ffffff;
+            box-shadow: 0 0 30px #ff003c;
+            transform: translateY(-4px);
+        }
+
+        /* ==========================================================================
+           بەشی دیسکۆرد (DISCORD SECTION)
+           ========================================================================== */
         .bottom-discord-box {
             background: linear-gradient(180deg, #1e0207 0%, #080808 100%);
             border: 3px solid #ff003c;
@@ -216,7 +276,7 @@
             padding: 70px 35px;
             text-align: center;
             box-shadow: 0 0 40px rgba(255, 0, 60, 0.6);
-            margin: 90px 0 40px 0;
+            margin: 40px 0 40px 0;
         }
 
         .bottom-discord-box h2 {
@@ -279,6 +339,9 @@
             }
             .neon-card {
                 padding: 40px 25px;
+            }
+            .tiktok-buttons-container {
+                flex-direction: column;
             }
             .bottom-discord-box {
                 padding: 50px 20px;
@@ -413,6 +476,23 @@
             </div>
         </div>
 
+        <!-- بەشی ئەکاونتەکانی تیک تۆک -->
+        <div class="tiktok-section-box">
+            <h2>ئەکاونتە فەرمییەکانی ئێمە لە TikTok</h2>
+            <p>بۆ بینینی نوێترین ئەپدێتەکان، فێرکارییەکان و چالاکییەکانی تیمەکەمان، دەتوانیت لە ڕێگەی ئەم لینکانەی خوارەوە فۆڵۆی ئەکاونتەکانمان بکەیت لە تیک تۆک:</p>
+            
+            <div class="tiktok-buttons-container">
+                <a href="https://www.tiktok.com/@cta.agency8?_r=1&_t=ZS-995mRujkuKy" target="_blank" class="tiktok-btn">
+                    🎵 CTA Agency TikTok
+                </a>
+                
+                <a href="https://www.tiktok.com/@imyara88?_r=1&_t=ZS-995mQxMXOgH" target="_blank" class="tiktok-btn">
+                    🎵 Official Account TikTok
+                </a>
+            </div>
+        </div>
+
+        <!-- بەشی دیسکۆرد -->
         <div class="bottom-discord-box">
             <h2>فێربوونی سایبەر سێکوریتی لەگەڵ CTA AGENCY</h2>
             <p>دەتەوێت بچیتە جیهانی هاکینگی ئەخلاقی و پاراستنی دیجیتاڵی؟ دەتەوێت ئاستی زانیارییەکانت بەرز بکەیتەوە لەسەر چۆنیەتی پاراستنی سیستەم و ئامێرەکانت؟ پەیوەندیمان پێوە بکە لە ڕێگەی سێرڤەری دیسکۆردەوە بۆ فێربوون، وەرگرتنی خول و ڕێنمایی ڕاستەوخۆ لەلایەن تیمی CTA AGENCY.</p>
@@ -428,4 +508,4 @@
     </footer>
 
 </body>
-  </html>
+</html>
