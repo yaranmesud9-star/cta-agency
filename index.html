@@ -2,7 +2,6 @@
 <html lang="ckb" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- ڕێگەدانی تەواو و بێ سنوور بۆ زووم کردن و دوور و نزیککردنەوە -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=10.0, minimum-scale=0.1">
     <title>CTA AGENCY | سایبەر سێکوریتی</title>
     <style>
@@ -11,62 +10,90 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         html, body {
             width: 100%;
             background-color: #030303;
             color: #ffffff;
-            line-height: 2.4;
+            line-height: 2.2;
             font-size: 16px;
             direction: rtl;
             text-align: right;
         }
 
         header {
-            background: linear-gradient(180deg, #0d0d0d 0%, #030303 100%);
-            border-bottom: 3px solid #ff003c;
-            box-shadow: 0 0 25px rgba(255, 0, 60, 0.6);
-            padding: 40px 20px;
-            text-align: center;
-            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ff003c;
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
+            padding: 15px 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .header-brand {
-            font-size: 38px;
+            font-size: 28px;
             font-weight: 900;
             color: #ff003c;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px #ff003c;
-            display: inline-block;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #ff003c;
         }
 
         .header-brand span {
             color: #ffffff;
-            text-shadow: 0 0 15px #ffffff;
         }
 
-        .header-subtext {
-            color: #999999;
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 0, 60, 0.4);
             font-size: 14px;
-            letter-spacing: 2px;
-            margin-top: 8px;
-            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: rgba(255, 0, 60, 0.05);
+        }
+
+        .nav-links a:hover {
+            background-color: #ff003c;
+            color: #ffffff;
+            box-shadow: 0 0 15px #ff003c;
+            transform: translateY(-2px);
         }
 
         .hero-container {
-            padding: 80px 25px;
+            padding: 70px 20px;
             text-align: center;
             background: radial-gradient(circle, #220207 0%, #030303 100%);
             border-bottom: 1px solid #1a1a1a;
         }
 
         .hero-title {
-            font-size: 42px;
+            font-size: 38px;
             font-weight: 900;
             color: #ffffff;
-            margin-bottom: 25px;
-            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         .hero-title span {
@@ -75,283 +102,197 @@
         }
 
         .hero-description {
-            font-size: 19px;
+            font-size: 18px;
             color: #dddddd;
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
-            line-height: 2.4;
-            text-align: center;
         }
 
         .wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 40px 20px;
+        }
+
+        .page-section {
+            padding-top: 80px;
+            margin-bottom: 40px;
         }
 
         .title-block {
             text-align: center;
-            margin-bottom: 50px;
-            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
         .main-heading {
-            font-size: 34px;
+            font-size: 32px;
             color: #ff003c;
             text-shadow: 0 0 15px #ff003c;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 800;
-            line-height: 1.5;
         }
 
         .sub-heading {
-            font-size: 17px;
+            font-size: 16px;
             color: #aaaaaa;
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
-            line-height: 2.1;
+        }
+
+        .img-box {
+            width: 100%;
+            height: 240px;
+            border: 2px solid #ff003c;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d0d0d;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .img-box:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 60, 0.7);
+            transform: scale(1.01);
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .grid-layout-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 45px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
         }
 
         .grid-layout-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .neon-card {
             background-color: #080808;
             border: 2px solid #ff003c;
-            border-radius: 18px;
-            padding: 50px 40px;
-            box-shadow: 0 0 20px rgba(255, 0, 60, 0.4), inset 0 0 15px rgba(255, 0, 60, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 0 18px rgba(255, 0, 60, 0.3);
             transition: all 0.3s ease;
-            position: relative;
-            text-align: right;
         }
 
         .neon-card:hover {
-            box-shadow: 0 0 35px rgba(255, 0, 60, 0.85);
-            transform: translateY(-6px);
+            box-shadow: 0 0 30px rgba(255, 0, 60, 0.8);
+            transform: translateY(-5px);
         }
 
         .neon-card h3 {
             color: #ffffff;
-            font-size: 22px;
-            margin-bottom: 25px;
+            font-size: 20px;
+            margin-bottom: 15px;
             border-bottom: 2px solid #ff003c;
-            padding-bottom: 15px;
-            font-weight: 700;
-            line-height: 1.6;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
         }
 
         .neon-card p {
             color: #cccccc;
-            font-size: 16px;
-            line-height: 2.2;
-            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 2;
         }
 
         .neon-list {
             list-style: none;
-            margin-top: 25px;
-            padding-right: 0;
+            margin-top: 15px;
         }
 
         .neon-list li {
             position: relative;
-            padding-right: 30px;
-            margin-bottom: 15px;
+            padding-right: 25px;
+            margin-bottom: 10px;
             color: #e0e0e0;
-            font-size: 15px;
-            line-height: 2;
+            font-size: 14px;
         }
 
         .neon-list li::before {
             content: "✦";
             position: absolute;
             right: 0;
-            top: 0;
             color: #ff003c;
-            font-size: 18px;
-            text-shadow: 0 0 8px #ff003c;
         }
 
-        .info-box {
-            background: linear-gradient(135deg, #180206 0%, #070707 100%);
+        .social-box {
+            background: linear-gradient(135deg, #180206 0%, #080808 100%);
             border: 2px solid #ff003c;
             border-radius: 20px;
-            padding: 50px 40px;
-            margin: 60px 0;
-            box-shadow: 0 0 30px rgba(255, 0, 60, 0.4);
-            text-align: right;
-        }
-
-        .info-box h2 {
-            font-size: 28px;
-            color: #ffffff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 12px #ff003c;
-            line-height: 1.5;
-        }
-
-        .info-box p {
-            color: #dddddd;
-            font-size: 17px;
-            line-height: 2.4;
-        }
-
-        /* ==========================================================================
-           بەشی نوێی تیک تۆک (TIKTOK SECTION)
-           ========================================================================== */
-        .tiktok-section-box {
-            background: linear-gradient(135deg, #110006 0%, #080808 100%);
-            border: 2px solid #ff003c;
-            border-radius: 20px;
-            padding: 50px 30px;
+            padding: 40px 20px;
             text-align: center;
             box-shadow: 0 0 30px rgba(255, 0, 60, 0.5);
-            margin: 70px 0 40px 0;
+            margin-top: 30px;
         }
 
-        .tiktok-section-box h2 {
-            font-size: 30px;
-            color: #ffffff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px #ff003c;
-        }
-
-        .tiktok-section-box p {
-            color: #cccccc;
-            font-size: 17px;
-            margin-bottom: 35px;
-        }
-
-        .tiktok-buttons-container {
+        .social-buttons {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
+            margin-top: 25px;
         }
 
-        .tiktok-btn {
+        .social-btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background-color: #000000;
+            gap: 10px;
+            background: #000000;
             color: #ffffff;
             border: 2px solid #ff003c;
-            padding: 16px 32px;
-            font-size: 18px;
+            padding: 14px 28px;
+            font-size: 16px;
             font-weight: bold;
             border-radius: 12px;
             text-decoration: none;
-            box-shadow: 0 0 18px rgba(255, 0, 60, 0.4);
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
             transition: all 0.3s ease;
         }
 
-        .tiktok-btn:hover {
+        .social-btn:hover {
             background-color: #ff003c;
-            color: #ffffff;
-            box-shadow: 0 0 30px #ff003c;
-            transform: translateY(-4px);
-        }
-
-        /* ==========================================================================
-           بەشی دیسکۆرد (DISCORD SECTION)
-           ========================================================================== */
-        .bottom-discord-box {
-            background: linear-gradient(180deg, #1e0207 0%, #080808 100%);
-            border: 3px solid #ff003c;
-            border-radius: 22px;
-            padding: 70px 35px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(255, 0, 60, 0.6);
-            margin: 40px 0 40px 0;
-        }
-
-        .bottom-discord-box h2 {
-            font-size: 32px;
-            color: #ffffff;
-            margin-bottom: 25px;
-            font-weight: 800;
-            line-height: 1.6;
-            text-shadow: 0 0 15px #ffffff;
-        }
-
-        .bottom-discord-box p {
-            font-size: 18px;
-            color: #dddddd;
-            max-width: 850px;
-            margin: 0 auto 40px auto;
-            line-height: 2.3;
-            text-align: center;
-        }
-
-        .discord-link-btn {
-            display: inline-block;
-            background-color: #ff003c;
-            color: #ffffff;
-            padding: 18px 50px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 12px;
             box-shadow: 0 0 25px #ff003c;
-            transition: all 0.3s ease;
+            transform: translateY(-3px);
         }
 
-        .discord-link-btn:hover {
+        .discord-btn-highlight {
+            background-color: #ff003c;
+        }
+
+        .discord-btn-highlight:hover {
             background-color: #ffffff;
             color: #ff003c;
-            box-shadow: 0 0 35px #ffffff;
-            transform: scale(1.04);
         }
 
         footer {
             background-color: #050505;
             border-top: 2px solid #ff003c;
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
             color: #777777;
-            font-size: 15px;
-        }
-
-        footer p {
-            margin-bottom: 8px;
+            font-size: 14px;
+            margin-top: 50px;
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 30px;
-            }
-            .main-heading {
-                font-size: 26px;
-            }
-            .neon-card {
-                padding: 40px 25px;
-            }
-            .tiktok-buttons-container {
+            .nav-container {
                 flex-direction: column;
             }
-            .bottom-discord-box {
-                padding: 50px 20px;
+            .hero-title {
+                font-size: 28px;
             }
-            .bottom-discord-box h2 {
-                font-size: 26px;
-            }
-            .discord-link-btn {
-                padding: 15px 35px;
-                font-size: 18px;
+            .social-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -359,146 +300,141 @@
 <body>
 
     <header>
-        <div class="header-brand">CTA <span>AGENCY</span></div>
-        <div class="header-subtext">Cyber Security & Ethical Hacking Team</div>
+        <div class="nav-container">
+            <div class="header-brand">CTA <span>AGENCY</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">دەربارە</a></li>
+                <li><a href="#operations">ئۆپراسیۆنەکان</a></li>
+                <li><a href="#cyber-tasks">ئەرکەکانی سایبەر</a></li>
+                <li><a href="#tools">ئامرازەکان</a></li>
+                <li><a href="#social">تۆڕە کۆمەڵایەتییەکان</a></li>
+            </ul>
+        </div>
     </header>
 
     <section class="hero-container">
-        <h1 class="hero-title">تیمی <span>CTA AGENCY</span> بۆ ئۆپراسیۆنەکانی سایبەر سێکوریتی</h1>
-        <p class="hero-description">ئێمە تیمی CTA AGENCYین، گرووپێکی تایبەتمەند لە بوارەکانی سایبەر سێکوریتی، ئیتیکاڵ هاکینگ و پاراستنی سیستەمەکان. کارمان پشکنینی ڕێگاکانی دزەکردن، ڕاوەدوونانی مەترسییە دیجیتاڵییەکان و پاراستنی زانیاری بەکارهێنەرانە.</p>
+        <h1 class="hero-title">تیمی <span>CTA AGENCY</span> بۆ سایبەر سێکوریتی</h1>
+        <p class="hero-description">پاراستنی ئاسایشی دیجیتاڵی، ڕاوەدوونانی مەترسییەکان و ڕاگرتنی سەرچاوە زیانبەخشەکان.</p>
     </section>
 
     <div class="wrapper">
 
-        <div class="info-box">
-            <h2>دەروازەیەک دەربارەی CTA AGENCY</h2>
-            <p>تیمی CTA AGENCY پێکهاتووە لە کەسانی پسپۆڕ و شارەزا لە بواری پاراستنی ئاسایشی دیجیتاڵی. ئامانجی سەرەکی ئێمە دروستکردنی کەشێکی ئارام و پارێزراوە لە جیهانی ئینتەرنێتدا. ئێمە کار لەسەر دۆزینەوەی خاڵە لاوازەکان دەکەین پێش ئەوەی هاکەرە خراپەکان سوودی لێ وەرگرن، هەروەها بەرپەرچی هەموو ئەو چالاکییە زیانبەخشانە دەدەینەوە کە ئاسایشی دیجیتاڵی دەخەنە مەترسییەوە.</p>
-        </div>
-
-        <div class="title-block">
-            <h2 class="main-heading">ئۆپراسیۆنەکانی دادۆشین و پاراستن</h2>
-            <p class="sub-heading">تیمی CTA AGENCY ڕۆڵێکی کارا دەگێڕێت لە ڕاگرتن و لەناوبردنی ئەو پەڕە و ئەپڵیکەیشنانەی زیان بە بەکارهێنەران دەگەیەنن.</p>
-        </div>
-
-        <div class="grid-layout-2">
+        <!-- بەشی یەکەم: دەربارە -->
+        <section id="about" class="page-section">
             <div class="neon-card">
-                <h3>داخستن و سڕینەوەی وێبسایتە زیانبەخشەکان</h3>
-                <p>تیمی CTA AGENCY بە بەکارهێنانی ڕێگەی زانستی و ناردنی ڕاپۆرتی بڕواپێکراوی ئاسایش بۆ دابینکەرانی میوانداری (Hosting Providers) و سێرڤەرە جیهانییەکان، کار دەکات بۆ ڕاگرتن و دادۆشینی تەواوەتی ئەو وێبسایتانەی ناوەڕۆکی زیانبەخش یان مەترسیدار بڵاودەکەنەوە.</p>
-                <ul class="neon-list">
-                    <li>ڕاگرتنی ڕاستەوخۆی سێرڤەرەکانی میوانداریکردنی ناوەڕۆکی خراپ</li>
-                    <li>بلۆککردنی دۆمەینی وێبسایتە مەترسیدارەکان</li>
-                    <li>پەکخستنی ڕیکلام و پەڕە بێزارکەرەکان لەسەر ئینتەرنێت</li>
-                </ul>
+                <div class="img-box">
+                    <img src="ctaagency.jpg" alt="CTA Agency Image">
+                </div>
+                <h3>دەروازەیەک دەربارەی CTA AGENCY</h3>
+                <p>تیمی CTA AGENCY پێکهاتووە لە کەسانی پسپۆڕ و شارەزا لە بواری پاراستنی ئاسایشی دیجیتاڵی. ئامانجی سەرەکی ئێمە دروستکردنی کەشێکی ئارام و پارێزراوە لە جیهانی ئینتەرنێتدا لە ڕێگەی دۆزینەوەی خاڵە لاوازەکان و ڕاگرتنی هێرشەکان.</p>
+            </div>
+        </section>
+
+        <!-- بەشی دووەم: ئۆپراسیۆنەکان -->
+        <section id="operations" class="page-section">
+            <div class="title-block">
+                <h2 class="main-heading">ئۆپراسیۆنەکانی دادۆشین و پاراستن</h2>
+                <p class="sub-heading">لەناوبردن و پێداچوونەوە بەو وێبسایت و ئەپانەی زیان بە بەکارهێنەران دەگەیەنن.</p>
             </div>
 
-            <div class="neon-card">
-                <h3>پەکخستن و ڕاگرتنی ئەپڵیکەیشنە مەترسیدارەکان</h3>
-                <p>بەشێک لە ئەپڵیکەیشنەکان بۆ مەبەستی خراپ یان سیخوڕیکردن لەسەر زانیاری بەکارهێنەران دروست دەکرێن. تیمەکەمان لە ڕێگەی شیکردنەوەی پێچەوانەی کۆدەکان (Reverse Engineering) درزە ئەمنییەکانیان دەدۆزێتەوە و سێرڤەرە سەرەکییەکانیان لەکار دەخات.</p>
-                <ul class="neon-list">
-                    <li>تێکدانی سێرڤەرەکانی پشتەوەی (Backend) ئەپە زیانبەخشەکان</li>
-                    <li>وەستاندنی ئەپەکانی دزینی زانیاری و سیخوڕی مۆبایل</li>
-                    <li>پاراستنی ئامێری بەکارهێنەران لە بەرنامە زیانبەخشەکان</li>
-                </ul>
+            <div class="grid-layout-2">
+                <div class="neon-card">
+                    <div class="img-box">
+                        <img src="ctaagency.jpg" alt="CTA Agency Image">
+                    </div>
+                    <h3>داخستنی وێبسایتە زیانبەخشەکان</h3>
+                    <p>ڕاگرتنی ڕاستەوخۆی سێرڤەرەکان و ناردنی ڕاپۆرتی ئەمنی بڕواپێکراو بۆ بلۆککردنی ناوەڕۆکی مەترسیدار.</p>
+                    <ul class="neon-list">
+                        <li>ڕاگرتنی سێرڤەری میوانداری زیانبەخش</li>
+                        <li>بلۆککردنی دۆمەینە گوماناوییەکان</li>
+                    </ul>
+                </div>
+
+                <div class="neon-card">
+                    <div class="img-box">
+                        <img src="ctaagency.jpg" alt="CTA Agency Image">
+                    </div>
+                    <h3>پەکخستنی ئەپڵیکەیشنە مەترسیدارەکان</h3>
+                    <p>شیکردنەوەی پێچەوانەی کۆدەکان بۆ دۆزینەوەی درزی سیخوڕی و لەکارخستنی سێرڤەرەکانی پشتەوەیان.</p>
+                    <ul class="neon-list">
+                        <li>تێکدانی سێرڤەری Backendی ئەپەکان</li>
+                        <li>وەستاندنی دزینی زانیاری مۆبایل</li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="title-block">
-            <h2 class="main-heading">کار و ئەرکەکانی کەسی سایبەر سێکوریتی</h2>
-            <p class="sub-heading">تەواوی ئەو ئەرکە سەرەکییانەی کە پسپۆڕێکی سایبەر سێکوریتی ئەنجامی دەدات بۆ پاراستنی سیستەم و ئاسایشی دیجیتاڵی.</p>
-        </div>
-
-        <div class="grid-layout-3">
-            <div class="neon-card">
-                <h3>دۆزینەوەی خاڵی لاواز (Vulnerability Scanning)</h3>
-                <p>پشکنینی بەردەوامی سیستەم، وێبسایت و بەرنامەکان تا هەر کەلێنێک هەبێت بدۆزرێتەوە پێش ئەوەی بە خراپی بەکاربهێنرێت.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>تاقیکردنەوەی بڕین (Penetration Testing)</h3>
-                <p>ئەنجامدانی هێرشی ئەخلاقی و کۆنتڕۆڵکراو بۆ سەر سیستەمەکان تا هێزی بەرگری و ئاسایشیان بە وردی دیاری بڕیار بدرێت.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>تێکشکاندنی هێرشەکان (Threat Mitigation)</h3>
-                <p>وەستاندنی هێرشە ئەلیکترۆنییەکان لە کاتی ڕوودانیاندا و ڕاگرتنی هاکەرە ڕەشەکان لە گەیشتن بە زانیارییە هەستیارەکان.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>شیکاری کۆدی ئاسایش (Code Review)</h3>
-                <p>خوێندنەوە و پشکنینی کۆدی بەرنامەسازی وێبسایت و ئەپەکان بۆ دڵنیابوونەوە لە نەبوونی درزی ئەمنی شاراوە.</p>
+        <!-- بەشی سێیەم: ئەرکەکانی سایبەر سێکوریتی -->
+        <section id="cyber-tasks" class="page-section">
+            <div class="title-block">
+                <h2 class="main-heading">ئەرکەکانی پسپۆڕی سایبەر سێکوریتی</h2>
+                <p class="sub-heading">کۆمەڵێک تایبەتمەندی و ئەرکی سەرەکی تیم بۆ پاراستنی ئاسایش.</p>
             </div>
 
-            <div class="neon-card">
-                <h3>بەهێزکردنی دیواری بەرگری (Firewall Setup)</h3>
-                <p>دابینکردن و ڕێکخستنی دیواری بەرگری بەهێز بۆ تۆڕەکان تا ڕێگە لە چوونی ناپێویست و هێرشەکان بگیرێت.</p>
+            <div class="grid-layout-3">
+                <div class="neon-card">
+                    <h3>دۆزینەوەی خاڵی لاواز</h3>
+                    <p>پشکنینی بەردەوامی سیستەم و وێبسایتەکان بۆ دۆزینەوەی کەلێنە ئەمنییەکان.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>تاقیکردنەوەی بڕین</h3>
+                    <p>ئەنجامدانی هێرشی ئەخلاقی بۆ دیاریکردنی ئاستی بەرگری سیستەمەکان.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>تێکشکاندنی هێرشەکان</h3>
+                    <p>وەستاندنی خێرای هێرشە ئەلیکترۆنییەکان لە کاتی ڕوودانیاندا.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بەشی چوارەم: ئامرازەکان -->
+        <section id="tools" class="page-section">
+            <div class="title-block">
+                <h2 class="main-heading">ئامراز و تەکنەلۆژیاکان</h2>
+                <p class="sub-heading">ئەو سیستەم و بەرنامانەی تیمی CTA AGENCY بەکاریان دەهێنێت.</p>
             </div>
 
-            <div class="neon-card">
-                <h3>بەدواداچوونی تاوانی ئەلیکترۆنی (Digital Forensics)</h3>
-                <p>کۆکردنەوەی بەڵگە دیجیتاڵییەکان و شیکردنەوەی ڕێگاکانی هێرشکردن بۆ ناسینەوەی سەرچاوەی هێرشکاران.</p>
+            <div class="grid-layout-3">
+                <div class="neon-card">
+                    <h3>Kali Linux</h3>
+                    <p>سیستەمی سەرەکی بۆ تاقیکردنەوەکانی ئاسایش و هێرشی ئەخلاقی.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>Wireshark & Nmap</h3>
+                    <p>ئامرازی شیکردنەوەی ترافیک و دۆزینەوەی پۆرتە کراوەکان.</p>
+                </div>
+
+                <div class="neon-card">
+                    <h3>Burp Suite</h3>
+                    <p>پشکنینی زۆر بەهێزی کەلێنە ئەمنییەکانی ڕووی وێبسایت.</p>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="title-block">
-            <h2 class="main-heading">ئامراز و تەکنەلۆژیاکانی بەرگری (Tools & Technologies)</h2>
-            <p class="sub-heading">ئەو ئامرازە پێشکەوتووانەی کە لەلایەن تیمی CTA AGENCY بەکاردێن بۆ ئەنجامدانی ئۆپراسیۆنەکان.</p>
-        </div>
-
-        <div class="grid-layout-3">
-            <div class="neon-card">
-                <h3>سیستەمی کالی لینۆکس (Kali Linux)</h3>
-                <p>سیستەمی کارپێکردنی سەرەکیی تایبەتمەند بۆ ئەنجامدانی تەواوی تاقیکردنەوەکانی ئاسایش و هێرشی ئەخلاقی.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>شیکەرەوەی تۆڕ (Wireshark & Nmap)</h3>
-                <p>بەکارهێنانی Nmap بۆ دۆزینەوەی پۆرتە کراوەکان و Wireshark بۆ شیکردنەوەی ترافیکی تۆڕ و دۆزینەوەی مەترسییەکان.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>پشکنینی وێب (Burp Suite Enterprise)</h3>
-                <p>ئامرازی زۆر بەهێز بۆ دەستکاری، ڕاگرتن و دۆزینەوەی کەلێنە ئەمنییەکان لەسەر ڕووی وێبسایتەکان.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>هەڵوەشاندنەوەی کۆد (Reverse Engineering)</h3>
-                <p>بەکارهێنانی ئامرازەکانی وەک Ghidra و IDA Pro بۆ شیکردنەوەی ئەپە زیانبەخشەکان و لەکارخستنیان.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>کۆکردنەوەی زانیاری (OSINT)</h3>
-                <p>تەکنیکەکانی کۆکردنەوەی زانیاری لە سەرچاوە کراوەکان بۆ دیاریکردنی ناسنامەی هێرشکاران.</p>
-            </div>
-
-            <div class="neon-card">
-                <h3>دیواری ئاسایشی بەرز (Cloudflare Security)</h3>
-                <p>بەکارھێنانی سیستەمە پێشکەوتووەکانی پاراستنی وێب بۆ وەستاندنی هێرشە گەورەکانی وەک DDoS.</p>
-            </div>
-        </div>
-
-        <!-- بەشی ئەکاونتەکانی تیک تۆک -->
-        <div class="tiktok-section-box">
-            <h2>ئەکاونتە فەرمییەکانی ئێمە لە TikTok</h2>
-            <p>بۆ بینینی نوێترین ئەپدێتەکان، فێرکارییەکان و چالاکییەکانی تیمەکەمان، دەتوانیت لە ڕێگەی ئەم لینکانەی خوارەوە فۆڵۆی ئەکاونتەکانمان بکەیت لە تیک تۆک:</p>
-            
-            <div class="tiktok-buttons-container">
-                <a href="https://www.tiktok.com/@cta.agency8?_r=1&_t=ZS-995mRujkuKy" target="_blank" class="tiktok-btn">
-                    🎵 CTA Agency
-                </a>
+        <!-- بەشی پێنجەم: تۆڕە کۆمەڵایەتییەکان و لینکەکان -->
+        <section id="social" class="page-section">
+            <div class="social-box">
+                <h2 class="main-heading">پەیوەندی و تۆڕە کۆمەڵایەتییەکان</h2>
+                <p>دەتوانیت لە ڕێگەی ئەم لینکانەی خوارەوە بەردەوام بەدواداچوون بۆ کارەکانمان بکەیت یان بێیتە ناو سێرڤەرەکەی کۆمەڵگەکەمان:</p>
                 
-                <a href="https://www.tiktok.com/@imyara88?_r=1&_t=ZS-995mQxMXOgH" target="_blank" class="tiktok-btn">
-                    🎵 disigner 
-                </a>
-            </div>
-        </div>
+                <div class="social-buttons">
+                    <a href="https://www.tiktok.com/@cta.agency8?_r=1&_t=ZS-995mRujkuKy" target="_blank" class="social-btn">
+                        🎵 CTA Agency TikTok
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@imyara88?_r=1&_t=ZS-995mQxMXOgH" target="_blank" class="social-btn">
+                        🎵 Official Account TikTok
+                    </a>
 
-        <!-- بەشی دیسکۆرد -->
-        <div class="bottom-discord-box">
-            <h2>فێربوونی سایبەر سێکوریتی لەگەڵ CTA AGENCY</h2>
-            <p>دەتەوێت بچیتە جیهانی هاکینگی ئەخلاقی و پاراستنی دیجیتاڵی؟ دەتەوێت ئاستی زانیارییەکانت بەرز بکەیتەوە لەسەر چۆنیەتی پاراستنی سیستەم و ئامێرەکانت؟ پەیوەندیمان پێوە بکە لە ڕێگەی سێرڤەری دیسکۆردەوە بۆ فێربوون، وەرگرتنی خول و ڕێنمایی ڕاستەوخۆ لەلایەن تیمی CTA AGENCY.</p>
-            
-            <a href="https://discord.gg/heviland" target="_blank" class="discord-link-btn">چوونە ناو سێرڤەری دیسکۆرد</a>
-        </div>
+                    <a href="https://discord.gg/heviland" target="_blank" class="social-btn discord-btn-highlight">
+                        💬 Discord Server
+                    </a>
+                </div>
+            </div>
+        </section>
 
     </div>
 
